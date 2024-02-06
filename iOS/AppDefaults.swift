@@ -56,6 +56,7 @@ final class AppDefaults {
 		static let addWebFeedFolderName = "addWebFeedFolderName"
 		static let addFolderAccountID = "addFolderAccountID"
 		static let useSystemBrowser = "useSystemBrowser"
+		static let useReaderMode = "useReaderMode"
 		static let currentThemeName = "currentThemeName"
 	}
 
@@ -119,6 +120,15 @@ final class AppDefaults {
 		}
 		set {
 			UserDefaults.standard.setValue(newValue, forKey: Key.useSystemBrowser)
+		}
+	}
+	
+	var useReaderMode: Bool {
+		get {
+			return UserDefaults.standard.bool(forKey: Key.useReaderMode)
+		}
+		set {
+			UserDefaults.standard.setValue(newValue, forKey: Key.useReaderMode)
 		}
 	}
 	

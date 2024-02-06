@@ -675,7 +675,11 @@ class MasterFeedViewController: UITableViewController, UndoableCommandRunner {
 	func openInAppBrowser() {
 		if let indexPath = coordinator.currentFeedIndexPath,
 			let url = coordinator.homePageURLForFeed(indexPath) {
-			let vc = SFSafariViewController(url: url)
+			
+			let config = SFSafariViewController.Configuration()
+			config.entersReaderIfAvailable = AppDefaults.shared.useReaderMode
+
+			let vc = SFSafariViewController(url: url, configuration: config)
 			present(vc, animated: true)
 		}
 	}

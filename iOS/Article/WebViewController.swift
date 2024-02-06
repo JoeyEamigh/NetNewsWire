@@ -273,7 +273,10 @@ class WebViewController: UIViewController {
 		if AppDefaults.shared.useSystemBrowser {
 			UIApplication.shared.open(url, options: [:])
 		} else {
-			let vc = SFSafariViewController(url: url)
+			let config = SFSafariViewController.Configuration()
+			config.entersReaderIfAvailable = AppDefaults.shared.useReaderMode
+			
+			let vc = SFSafariViewController(url: url, configuration: config)
 			present(vc, animated: true)
 		}
 	}
@@ -378,7 +381,11 @@ extension WebViewController: WKNavigationDelegate {
 						guard didOpen == false else {
 							return
 						}
-						let vc = SFSafariViewController(url: url)
+						
+						let config = SFSafariViewController.Configuration()
+						config.entersReaderIfAvailable = AppDefaults.shared.useReaderMode
+						
+						let vc = SFSafariViewController(url: url, configuration: config)
 						self.present(vc, animated: true)
 					}
 				}
@@ -794,7 +801,11 @@ private extension WebViewController {
 			guard didOpen == false else {
 				return
 			}
-			let vc = SFSafariViewController(url: url)
+			
+			let config = SFSafariViewController.Configuration()
+			config.entersReaderIfAvailable = AppDefaults.shared.useReaderMode
+			
+			let vc = SFSafariViewController(url: url, configuration: config)
 			self.present(vc, animated: true)
 		}
 	}
